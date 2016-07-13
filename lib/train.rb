@@ -6,4 +6,7 @@ class Train
     @id = attributes.fetch(:id)
   end
 
+  define_method(:==) do |another_train|
+    self.name().==(another_train.name()).&(self.id().==(another_train.id()))
+  end
 end

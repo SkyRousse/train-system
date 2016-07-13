@@ -7,4 +7,13 @@ describe(Train) do
       expect(test_train.name()).to(eq('Red'))
     end
   end
+
+  describe('#==') do
+    it('compares objects to determine if they are the same') do
+      test_train1 = Train.new(:name => 'Blue', :id => nil)
+      test_train2 = Train.new(:name => 'Blue', :id => nil)
+      expect(test_train1).to(eq(test_train2))
+    end
+  end
+
 end
