@@ -36,4 +36,12 @@ describe(City)
       expect(City.find(test_city1.id())).to(eq(test_city1))
     end
   end
+
+  describe('#id') do
+    it('returns the id of a city') do
+      test_city = City.new({:id => nil, :name => "Portland"})
+      test_city.save()
+      expect(test_city.id()).to(be_an_instance_of(Fixnum))
+    end
+  end
 end
