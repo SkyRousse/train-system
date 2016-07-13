@@ -28,4 +28,12 @@ describe(City)
       expect(City.all()).to(eq([test_city1]))
     end
   end
+
+  describe('.find') do
+    it('returns a city by finding its id') do
+      test_city1 = City.new({:id => 7, :name => 'Portland'})
+      test_city1.save()
+      expect(City.find(test_city1.id())).to(eq(test_city1))
+    end
+  end
 end

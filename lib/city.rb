@@ -25,4 +25,14 @@ class City
     result = DB.exec("INSERT INTO cities (name) VALUES ('#{@name}') RETURNING id;")
     @id = result.first().fetch('id').to_i()
   end
+
+  define_singleton_method(:find) do |id|
+    found_city = nil
+    City.all().each() do |city|
+      if city.id().eql?(id)
+       found_city = city
+      end
+    end
+    found_city
+  end
 end
