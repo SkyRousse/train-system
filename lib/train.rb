@@ -42,8 +42,8 @@ class Train
     DB.exec("UPDATE trains SET name = '#{@name}' WHERE id = #{@id};")
   end
 
-  define_method(:remove) do |attributes|
+  define_method(:remove) do
     @id = self.id()
-    DB.exec("DELETE * from trains WHERE id = #{@id}")
+    DB.exec("DELETE from trains WHERE id = #{@id}")
   end
 end

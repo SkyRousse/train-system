@@ -1,5 +1,6 @@
 require('helper_spec')
 
+
 describe(Train) do
   describe('#name') do
     it ('returns the name of train to user') do
@@ -50,7 +51,7 @@ describe(Train) do
 
   describe('#update') do
     it('will update the name of a specific train') do
-      test_train1 = Train.new(:name => 'Blue', :id => nil)
+      test_train1 = Train.new({:name => 'Blue', :id => nil})
       test_train1.save()
       test_train1.update({:name => 'Red'})
       expect(test_train1.name()).to(eq('Red'))
