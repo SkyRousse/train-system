@@ -22,4 +22,11 @@ describe(Train) do
     end
   end
 
+  describe('#save') do
+    it('stores a new object of train') do
+      test_train1 = Train.new(:name => 'Green', :id => 2)
+      test_train1.save()
+      expect(Train.all()).to(eq([test_train1]))
+    end
+  end
 end
