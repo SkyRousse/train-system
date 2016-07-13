@@ -5,4 +5,8 @@ class City
     @name = attributes.fetch(:name)
     @id = attributes.fetch(:id)
   end
+
+  define_method(:==) do |another_city|
+    self.name().eql?(another_city.name()).&(self.id().eql?(another_city.id()))
+  end
 end
