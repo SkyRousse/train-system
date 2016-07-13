@@ -44,4 +44,14 @@ describe(City)
       expect(test_city.id()).to(be_an_instance_of(Fixnum))
     end
   end
+
+  describe('#update') do
+    it('updates the name of a city') do
+      test_city = City.new({:id => nil, :name => "Portland"})
+      test_city.save()
+      test_city.update({:name => 'Austin'})
+      expect(test_city.name()).to(eq('Austin'))
+    end
+  end
+
 end
