@@ -49,7 +49,16 @@ describe('view cities path', {:type => :feature}) do
     click_button('Add')
     expect(page).to have_content("Portland")
   end
+end
 
-
-
+describe('update cities path', {:type => :feature}) do
+  it('updates the name of a city') do
+    test_city = City.new(:id => nil, :name => 'Eugene')
+    test_city.save()
+    visit('/admin')
+    click_link("#{test_city.name()}")
+    fill_in('name', :with => 'Salem')
+    click_button('Update')
+    expect(page).to have_content("Salem")
+  end
 end
