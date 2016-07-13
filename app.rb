@@ -41,3 +41,10 @@ patch('/trains/:id') do
   @trains = Train.all()
   erb(:admin)
 end
+
+delete('/trains/:id') do
+  @train = Train.find(params.fetch("id").to_i())
+  @train.remove()
+  @trains = Train.all()
+  erb(:admin)
+end

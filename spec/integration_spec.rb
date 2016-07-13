@@ -26,4 +26,15 @@ describe('edit an existing train path', {:type => :feature}) do
     click_button('Update')
     expect(page).to have_content("Blue")
   end
+
+  describe('remove a train path', {:type => :feature}) do
+    it('removes a train from the database') do
+      test_train = Train.new(:name => 'Red', :id => nil)
+      test_train.save()
+      visit('/admin')
+      click_link("#{test_train.id()}")
+      click_button('Remove')
+      expect(page).to have_content("There are no trains in the database; Add a train below")
+    end
+  end
 end
