@@ -62,3 +62,14 @@ describe('update cities path', {:type => :feature}) do
     expect(page).to have_content("Salem")
   end
 end
+
+describe('delete cities path', {:type => :feature}) do
+  it('removes a city from the cities table') do
+    test_city = City.new(:id => nil, :name => 'Eugene')
+    test_city.save()
+    visit('/admin')
+    click_link("#{test_city.name()}")
+    click_button('Remove')
+    expect(page).to have_content("There are no cities in the database; Add a city below")
+  end
+end

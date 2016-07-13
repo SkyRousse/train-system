@@ -79,3 +79,11 @@ delete('/trains/:id') do
   @cities = City.all()
   erb(:admin)
 end
+
+delete('/cities/:id') do
+  @city = City.find(params.fetch("id").to_i())
+  @city.remove()
+  @trains = Train.all()
+  @cities = City.all()
+  erb(:admin)
+end
