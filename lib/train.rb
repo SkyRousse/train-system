@@ -25,4 +25,14 @@ class Train
     result = DB.exec("INSERT INTO trains (name) VALUES ('#{@name}') RETURNING id;")
     @id = result.first().fetch('id').to_i()
   end
+
+  define_singleton_method(:find) do |id|
+    train_found = nil
+    Train.all().each do |train|
+      if train.id().eql?(id)
+        train_found = train
+      end
+    end
+    train_found
+  end
 end
