@@ -13,6 +13,7 @@ get('/') do
 end
 
 get('/admin') do
+  @cities = City.all()
   @trains = Train.all()
   erb(:admin)
 end
@@ -21,10 +22,24 @@ get('/trains/new') do
   erb(:train_form)
 end
 
-post('/admin') do
+get('/cities/new') do
+  erb(:city_form)
+end
+
+post('/add_train') do
   name = params.fetch("name")
   new_train = Train.new(:name => name, :id => nil)
   new_train.save()
+  @trains = Train.all()
+  @cities = City.all()
+  erb(:admin)
+end
+
+post('/add_city') do
+  name = params.fetch('name')
+  new_city = City.new(:name => name, :id => nil)
+  new_city.save()
+  @cities = City.all()
   @trains = Train.all()
   erb(:admin)
 end
@@ -39,6 +54,7 @@ patch('/trains/:id') do
   @train = Train.find(params.fetch("id").to_i())
   @train.update({:name => name})
   @trains = Train.all()
+  @cities = City.all()
   erb(:admin)
 end
 
@@ -46,5 +62,6 @@ delete('/trains/:id') do
   @train = Train.find(params.fetch("id").to_i())
   @train.remove()
   @trains = Train.all()
+  @cities = City.all()
   erb(:admin)
 end

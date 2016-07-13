@@ -38,3 +38,18 @@ describe('edit an existing train path', {:type => :feature}) do
     end
   end
 end
+
+describe('view cities path', {:type => :feature}) do
+  it('list out all of the cities in the database') do
+    visit('/')
+    click_link('Admin')
+    expect(page).to have_content("There are no cities in the database; Add a city below")
+    click_link('Add city')
+    fill_in('name', :with => 'Portland')
+    click_button('Add')
+    expect(page).to have_content("Portland")
+  end
+
+
+
+end

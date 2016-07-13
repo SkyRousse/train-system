@@ -54,4 +54,13 @@ describe(City)
     end
   end
 
+  describe("#remove") do
+    it('removes specified city from the database') do
+      test_city = City.new({:id => nil, :name => "Portland"})
+      test_city.save()
+      test_city.remove()
+      expect(City.all()).to(eq([]))
+    end
+  end
+
 end

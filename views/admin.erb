@@ -12,3 +12,17 @@
 <% end %>
 
 <a href="/trains/new">Add train</a>
+
+<% if @cities.any? %>
+  <table>
+    <% @cities.each() do |city| %>
+      <tr>
+        <td><a href="/cities/<%= city.id() %>/edit"><%= city.name() %></a></td>
+      </tr>
+      <% end %>
+  </table>
+  <% else %>
+    <h3>There are no cities in the database; Add a city below</h3>
+<% end %>
+
+<a href="/cities/new">Add city</a>
