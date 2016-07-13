@@ -9,5 +9,9 @@ describe('view trains path', {:type => :feature}) do
     visit('/')
     click_link('Admin')
     expect(page).to have_content("There are no trains in the database; Add a train below")
+    click_link('Add train')
+    fill_in('name', :with => 'Red')
+    click_button('Add')
+    expect(page).to have_content("Red")
   end
 end

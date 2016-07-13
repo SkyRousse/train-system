@@ -3,10 +3,12 @@
   <table>
     <% @trains.each() do |train| %>
       <tr>
-        <td><%= @trains.id() %></td><td><%= @trains.name() %></td>
+        <td><%= train.id() %></td><td><%= train.name() %></td>
       </tr>
     <% end %>
   </table>
   <% else %>
     <h3>There are no trains in the database; Add a train below</h3>
 <% end %>
+
+<a href="/trains/new">Add train</a>
