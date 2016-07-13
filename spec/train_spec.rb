@@ -16,4 +16,10 @@ describe(Train) do
     end
   end
 
+  describe('.all') do
+    it('returns empty at first for stored trains') do
+      expect(Train.all()).to(eq([]))
+    end
+  end
+
 end
