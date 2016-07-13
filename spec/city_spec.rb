@@ -14,4 +14,11 @@ describe(City)
       expect(test_city1).to(eq(test_city2))
     end
   end
+
+  describe('.all') do
+    it('returns empty array') do
+      expect(City.all()).to(eq([]))
+    end
+  end
+
 end
