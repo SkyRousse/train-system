@@ -1,0 +1,12 @@
+<h1>Train System Administration</h1>
+<% if @trains.any?() %>
+  <table>
+    <% @trains.each() do |train| %>
+      <tr>
+        <td><%= @trains.id() %></td><td><%= @trains.name() %></td>
+      </tr>
+    <% end %>
+  </table>
+  <% else %>
+    <h3>There are no trains in the database; Add a train below</h3>
+<% end %>
