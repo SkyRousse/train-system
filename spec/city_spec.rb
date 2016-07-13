@@ -21,4 +21,11 @@ describe(City)
     end
   end
 
+  describe('#save') do
+    it('save a city to our table of stored cities') do
+      test_city1 = City.new({:id => 7, :name => 'Portland'})
+      test_city1.save()
+      expect(City.all()).to(eq([test_city1]))
+    end
+  end
 end
