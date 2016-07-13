@@ -1,0 +1,8 @@
+<form action='/trains/<%= @train.id() %>' method="post">
+  <input type="hidden" name="_method" value="patch">
+
+  <label for="name">Rename the train</label>
+  <input type="text" name="name">
+
+  <button type="submit">Update</button>
+</form>

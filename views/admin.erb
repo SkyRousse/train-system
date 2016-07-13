@@ -3,7 +3,7 @@
   <table>
     <% @trains.each() do |train| %>
       <tr>
-        <td><%= train.id() %></td><td><%= train.name() %></td>
+        <td><a href="/trains/<%= train.id() %>/edit"><%= train.id() %></a></td><td><%= train.name() %></td>
       </tr>
     <% end %>
   </table>

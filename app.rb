@@ -28,3 +28,16 @@ post('/admin') do
   @trains = Train.all()
   erb(:admin)
 end
+
+get('/trains/:id/edit') do
+  @train = Train.find(params.fetch('id').to_i())
+  erb(:train_edit)
+end
+
+patch('/trains/:id') do
+  name = params.fetch('name')
+  @train = Train.find(params.fetch("id").to_i())
+  @train.update({:name => name})
+  @trains = Train.all()
+  erb(:admin)
+end

@@ -47,4 +47,13 @@ describe(Train) do
       expect(Train.find(test_train2.id())).to(eq(test_train2))
     end
   end
+
+  describe('#update') do
+    it('will update the name of a specific train') do
+      test_train1 = Train.new(:name => 'Blue', :id => nil)
+      test_train1.save()
+      test_train1.update({:name => 'Red'})
+      expect(test_train1.name()).to(eq('Red'))
+    end
+  end
 end

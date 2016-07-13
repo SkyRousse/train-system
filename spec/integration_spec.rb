@@ -15,3 +15,15 @@ describe('view trains path', {:type => :feature}) do
     expect(page).to have_content("Red")
   end
 end
+
+describe('edit an existing train path', {:type => :feature}) do
+  it('updates a train in the database with user input from a form') do
+    test_train = Train.new(:name => 'Red', :id => nil)
+    test_train.save()
+    visit('/admin')
+    click_link("#{test_train.id()}")
+    fill_in('name', :with => 'Blue')
+    click_button('Update')
+    expect(page).to have_content("Blue")
+  end
+end
