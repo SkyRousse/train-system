@@ -94,6 +94,11 @@ patch('/cities/:id/join') do
   erb(:city_edit)
 end
 
+get('/cities/:id') do
+  @city = City.find(params.fetch("id").to_i())
+  erb(:city)
+end
+
 patch('/cities/:id') do
   name = params.fetch('name')
   @city = City.find(params.fetch("id").to_i())
