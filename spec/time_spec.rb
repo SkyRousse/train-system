@@ -30,4 +30,12 @@ describe(StopTime) do
     end
   end
 
+  describe('.find') do
+    it('return a stop_time by searching for an id') do
+      test_stop_time = StopTime.new({:id => 2, :stop_time => "09:00:13"})
+      test_stop_time.save()
+      expect(StopTime.find(test_stop_time.id())).to(eq(test_stop_time))
+    end
+  end
+
 end

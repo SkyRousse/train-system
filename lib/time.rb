@@ -27,5 +27,13 @@ class StopTime
     @id = result.first().fetch('id').to_i()
   end
 
-
+  define_singleton_method(:find) do |id|
+    stop_time_found = nil
+    StopTime.all().each do |time|
+      if time.id().eql?(id)
+        stop_time_found = time
+      end
+    end
+  stop_time_found
+  end
 end
