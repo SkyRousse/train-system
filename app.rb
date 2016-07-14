@@ -6,7 +6,7 @@ require('./lib/city')
 require('./lib/time')
 require('pg')
 
-DB = PG.connect({:dbname => 'train_system_test'})
+DB = PG.connect({:dbname => 'train_system'})
 
 get('/') do
   erb(:index)
@@ -52,6 +52,7 @@ end
 
 get('/trains/:id/edit') do
   @cities = City.all()
+  @stop_times = StopTime.all()
   @train = Train.find(params.fetch('id').to_i())
   erb(:train_edit)
 end
@@ -82,6 +83,8 @@ patch('/trains/:id/join') do
   city_ids = params.fetch("city_ids")
   @train.update({:city_ids => city_ids})
   @cities = City.all()
+  @stop_times = StopTime.all()
+  binding.pry
   erb(:train_edit)
 end
 

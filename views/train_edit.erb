@@ -29,13 +29,16 @@
 <% end %>
 
 <% if @train.cities().any?() %>
-<h3>Here are all cities that this train goes to</h3>
-
-<ul>
-  <% @train.cities().each() do |city| %>
-    <li> <%= city.name() %> </li>
-    <% end %>
-</ul>
+  <h3>Here are all cities that this train goes to</h3>
+    <table>
+      <% @train.cities().each() do |city| %>
+        <%if city.stops(@train.id()).any?() %>
+          <tr><td><%= city.name() %></td><td><%= city.stops(@train.id()) %></td></tr>
+        <% else %>
+          <tr><td><%= city.name() %></td><td></td></tr>
+        <% end %>
+      <% end %>
+    </table>
 <% else %>
   <h3>This train doesn't go to any cities yet</h3>
   <% end %>

@@ -79,4 +79,18 @@ describe(City) do
       expect(City.all()).to(eq([]))
     end
   end
+
+  describe('#stops') do
+    it('returns the stops for a specific train at city') do
+      test_stop_time = StopTime.new({:id => 2, :stop_time => "09:00:13"})
+      test_stop_time.save()
+      test_city = City.new({:id => nil, :name => "Portland"})
+      test_city.save()
+      test_train1 = Train.new(:name => 'Blue', :id => nil)
+      test_train1.save()
+      test_city.update(:train_ids => [test_train1.id()], :stop_time_ids => [test_stop_time.id()])
+      expect(test_city.stops(test_train1.id())).to(eq([test_stop_time]))
+    end
+  end
+
 end
