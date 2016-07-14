@@ -1,0 +1,12 @@
+<h3><%= @train.name() %></h3>
+
+<% if @train.cities().any?() %>
+  <ul>
+    <% @train.cities().each() do |city| %>
+    <li><%= city.name() %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <h3>This is a train to nowhere</h3>
+
+  <% end %>

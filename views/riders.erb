@@ -1,0 +1,27 @@
+<h1>Rider Info</h1>
+<h3>Find Train</h3>
+<% if @trains.any?() %>
+  <table>
+    <% @trains.each() do |train| %>
+      <tr>
+        <td><a href="/trains/<%= train.id() %>"><%= train.name() %></a></td><td><%= train.name() %></td>
+      </tr>
+    <% end %>
+  </table>
+  <% else %>
+    <h3>Sorry no trains; looks like you'll be walking</h3>
+<% end %>
+<br><br>
+<hr>
+<h3>See what trains go to a city</h3>
+<% if @cities.any? %>
+  <table>
+    <% @cities.each() do |city| %>
+      <tr>
+        <td><a href="/cities/<%= city.id() %>"><%= city.name() %></a></td>
+      </tr>
+      <% end %>
+  </table>
+  <% else %>
+    <h3>Our trains don't go anywhere</h3>
+<% end %>

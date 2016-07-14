@@ -99,3 +99,17 @@ describe('trains to city path', {:type => :feature}) do
     expect(page).to have_content("Red")
   end
 end
+
+describe('view train path', {:type => :feature}) do
+  it('takes site visitor to a train page') do
+    test_train = Train.new(:name => 'Red', :id => nil)
+    test_train.save()
+    test_city = City.new(:id => nil, :name => 'Eugene')
+    test_city.save()
+    test_train.update({:city_ids => [test_city.id()]})
+    visit('/')
+    click_link('Riders')
+    click_link("#{test_train.name()}")
+    expect(page).to have_content("Red Eugene")
+  end
+end

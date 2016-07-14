@@ -12,6 +12,12 @@ get('/') do
   erb(:index)
 end
 
+get('/riders') do
+  @cities = City.all()
+  @trains = Train.all()
+  erb(:riders)
+end
+
 get('/admin') do
   @cities = City.all()
   @trains = Train.all()
@@ -54,6 +60,11 @@ get('/cities/:id/edit') do
   @trains = Train.all()
   @city = City.find(params.fetch('id').to_i())
   erb(:city_edit)
+end
+
+get('/trains/:id') do
+  @train = Train.find(params.fetch("id").to_i())
+  erb(:train)
 end
 
 patch('/trains/:id') do
