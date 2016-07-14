@@ -22,4 +22,10 @@ class StopTime
     stop_times
   end
 
+  define_method(:save) do
+    result = DB.exec("INSERT INTO stop_times (stop_time) VALUES ('#{@stop_time}') RETURNING id;")
+    @id = result.first().fetch('id').to_i()
+  end
+
+
 end

@@ -22,4 +22,12 @@ describe(StopTime) do
     end
   end
 
+  describe('#save') do
+    it('saves a stop time to the database of stop times') do
+      test_stop_time = StopTime.new({:id => 2, :stop_time => "09:00:13"})
+      test_stop_time.save()
+      expect(StopTime.all()).to(eq([test_stop_time]))
+    end
+  end
+
 end
