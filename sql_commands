@@ -1,0 +1,107 @@
+-- ---
+-- Globals
+-- ---
+
+-- SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+-- SET FOREIGN_KEY_CHECKS=0;
+
+-- ---
+-- Table 'Trains'
+--
+-- ---
+
+DROP TABLE IF EXISTS `Trains`;
+
+CREATE TABLE `Trains` (
+  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `name` VARCHAR NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- ---
+-- Table 'Cities'
+--
+-- ---
+
+DROP TABLE IF EXISTS `Cities`;
+
+CREATE TABLE `Cities` (
+  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `name` VARCHAR NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- ---
+-- Table 'Stops'
+--
+-- ---
+
+DROP TABLE IF EXISTS `Stops`;
+
+CREATE TABLE `Stops` (
+  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `train_id` INTEGER NULL DEFAULT NULL,
+  `city_id` INTEGER NULL DEFAULT NULL,
+  `time_id` INTEGER NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- ---
+-- Table 'Tickets'
+--
+-- ---
+
+DROP TABLE IF EXISTS `Tickets`;
+
+CREATE TABLE `Tickets` (
+  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `stop_id` INTEGER NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- ---
+-- Table 'Time'
+--
+-- ---
+
+DROP TABLE IF EXISTS `Time`;
+
+CREATE TABLE `Time` (
+  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `time` TIME NULL DEFAULT NULL,
+  PRIMARY KEY (`id`, `time`)
+);
+
+-- ---
+-- Foreign Keys
+-- ---
+
+ALTER TABLE `Stops` ADD FOREIGN KEY (train_id) REFERENCES `Trains` (`id`);
+ALTER TABLE `Stops` ADD FOREIGN KEY (city_id) REFERENCES `Cities` (`id`);
+ALTER TABLE `Stops` ADD FOREIGN KEY (time_id) REFERENCES `Time` (`id`);
+ALTER TABLE `Tickets` ADD FOREIGN KEY (stop_id) REFERENCES `Stops` (`id`);
+
+-- ---
+-- Table Properties
+-- ---
+
+-- ALTER TABLE `Trains` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `Cities` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `Stops` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `Tickets` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `Time` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ---
+-- Test Data
+-- ---
+
+-- INSERT INTO `Trains` (`id`,`name`) VALUES
+-- ('','');
+-- INSERT INTO `Cities` (`id`,`name`) VALUES
+-- ('','');
+-- INSERT INTO `Stops` (`id`,`train_id`,`city_id`,`time_id`) VALUES
+-- ('','','','');
+-- INSERT INTO `Tickets` (`id`,`stop_id`) VALUES
+-- ('','');
+-- INSERT INTO `Time` (`id`,`time`) VALUES
+-- ('','');

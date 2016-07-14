@@ -37,7 +37,7 @@ class City
   end
 
   define_method(:update) do |attributes|
-    @name = attributes.fetch(:name)
+    @name = attributes.fetch(:name, @name)
     @id = self.id()
     DB.exec("UPDATE cities SET name = '#{@name}' WHERE id = #{@id};" )
   end

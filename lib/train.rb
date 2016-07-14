@@ -36,10 +36,26 @@ class Train
     train_found
   end
 
+  define_method(:cities) do
+    trains =[]
+    results = DB.exec("SELECT city_id FROM stops WHERE train_id = #{self.id()};")
+    results.each() do |result|
+      city_id = result.fetch('city_id').to_i()
+      city = DB.exec("SELECT * FROM cities WHERE id = #{city_id};")
+      name = city.first().fetch('name')
+      trains.push(City.new({:name => name, :id => city_id}))
+    end
+    trains
+  end
+
   define_method(:update) do |attributes|
-    @name = attributes.fetch(:name)
+    @name = attributes.fetch(:name, @name)
     @id = self.id()
     DB.exec("UPDATE trains SET name = '#{@name}' WHERE id = #{@id};")
+
+    attributes.fetch(:city_ids, []).each() do |city_id|
+      DB.exec("INSERT INTO stops (city_id, train_id ) VALUES (#{city_id}, #{self.id()});")
+    end
   end
 
   define_method(:remove) do

@@ -53,8 +53,12 @@ describe(Train) do
     it('will update the name of a specific train') do
       test_train1 = Train.new({:name => 'Blue', :id => nil})
       test_train1.save()
-      test_train1.update({:name => 'Red'})
-      expect(test_train1.name()).to(eq('Red'))
+      test_city1 = City.new({:name => 'New York', :id => nil})
+      test_city1.save()
+      test_city2 = City.new({:name => 'Denver', :id => nil})
+      test_city2.save()
+      test_train1.update({:city_ids => [test_city1.id(), test_city2.id()]})
+      expect(test_train1.cities()).to(eq([test_city1, test_city2]))
     end
   end
 end
