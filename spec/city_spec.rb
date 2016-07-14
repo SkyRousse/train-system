@@ -45,12 +45,29 @@ describe(City) do
     end
   end
 
+  describe('#trains') do
+    it('returns a list of all trains that stop at a city') do
+      test_city = City.new({:id => nil, :name => "Portland"})
+      test_city.save()
+      test_train1 = Train.new(:name => 'Blue', :id => nil)
+      test_train1.save()
+      test_train2 = Train.new(:name => 'Red', :id => nil)
+      test_train2.save()
+      test_city.update(:train_ids => [test_train1.id(), test_train2.id()])
+      expect(test_city.trains()).to(eq([test_train1, test_train2]))
+    end
+  end
+
   describe('#update') do
     it('updates the name of a city') do
       test_city = City.new({:id => nil, :name => "Portland"})
       test_city.save()
-      test_city.update({:name => 'Austin'})
-      expect(test_city.name()).to(eq('Austin'))
+      test_train1 = Train.new(:name => 'Blue', :id => nil)
+      test_train1.save()
+      test_train2 = Train.new(:name => 'Red', :id => nil)
+      test_train2.save()
+      test_city.update({:train_ids => [test_train1.id(), test_train2.id()]})
+      expect(test_city.trains()).to(eq([test_train1, test_train2]))
     end
   end
 
