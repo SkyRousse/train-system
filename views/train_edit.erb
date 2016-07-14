@@ -10,3 +10,34 @@
   <input type="hidden" name="_method" value="delete">
   <button type="submit">Remove</button>
 </form>
+
+<br><br>
+<hr>
+<h3>Select all cities that this train goes to</h3>
+<% if @cities.any?() %>
+  <form class="" action="/trains/<%= @train.id() %>/join" method="post">
+    <input type="hidden" name="_method" value="patch">
+    <% @cities.each() do |city| %>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="city_ids[]" value="<%= city.id() %>"><%= city.name() %>
+        </label>
+      </div>
+      <% end %>
+      <button type="submit">Add city</button>
+  </form>
+<% end %>
+
+<% if @train.cities().any?() %>
+<h3>Here are all cities that this train goes to</h3>
+
+<ul>
+  <% @train.cities().each() do |city| %>
+    <li> <%= city.name() %> </li>
+    <% end %>
+</ul>
+<% else %>
+  <h3>This train doesn't go to any cities yet</h3>
+  <% end %>
+
+  <a href="/admin">Return to the Admin page</a>

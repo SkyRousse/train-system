@@ -45,11 +45,13 @@ post('/add_city') do
 end
 
 get('/trains/:id/edit') do
+  @cities = City.all()
   @train = Train.find(params.fetch('id').to_i())
   erb(:train_edit)
 end
 
 get('/cities/:id/edit') do
+  @trains = Train.all()
   @city = City.find(params.fetch('id').to_i())
   erb(:city_edit)
 end
@@ -61,6 +63,15 @@ patch('/trains/:id') do
   @trains = Train.all()
   @cities = City.all()
   erb(:admin)
+end
+
+patch('/trains/:id/join') do
+  train_id = params.fetch("id").to_i()
+  @train = Train.find(train_id)
+  city_ids = params.fetch("city_ids")
+  @train.update({:city_ids => city_ids})
+  @cities = City.all()
+  erb(:train_edit)
 end
 
 patch('/cities/:id') do

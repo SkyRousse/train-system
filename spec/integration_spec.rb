@@ -73,3 +73,16 @@ describe('delete cities path', {:type => :feature}) do
     expect(page).to have_content("There are no cities in the database; Add a city below")
   end
 end
+
+describe('train to cities join path', {:type => :feature}) do
+  it('joins trains and cities in the stops table') do
+    test_train = Train.new(:name => 'Red', :id => nil)
+    test_train.save()
+    test_city = City.new(:id => nil, :name => 'Eugene')
+    test_city.save()
+    visit("/trains/#{test_train.id()}/edit")
+    check('city_ids[]')
+    click_button('Add city')
+    expect(page).to have_content("Eugene")
+  end
+end

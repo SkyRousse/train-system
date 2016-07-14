@@ -60,6 +60,7 @@ class Train
 
   define_method(:remove) do
     @id = self.id()
-    DB.exec("DELETE from trains WHERE id = #{@id}")
+    DB.exec("DELETE from stops WHERE train_id = #{@id};")
+    DB.exec("DELETE from trains WHERE id = #{@id};")
   end
 end
