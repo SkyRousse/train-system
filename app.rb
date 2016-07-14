@@ -74,6 +74,15 @@ patch('/trains/:id/join') do
   erb(:train_edit)
 end
 
+patch('/cities/:id/join') do
+  city_id = params.fetch("id").to_i()
+  @city = City.find(city_id)
+  train_ids = params.fetch("train_ids")
+  @city.update({:train_ids => train_ids})
+  @trains = Train.all()
+  erb(:city_edit)
+end
+
 patch('/cities/:id') do
   name = params.fetch('name')
   @city = City.find(params.fetch("id").to_i())

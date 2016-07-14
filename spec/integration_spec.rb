@@ -86,3 +86,16 @@ describe('train to cities join path', {:type => :feature}) do
     expect(page).to have_content("Eugene")
   end
 end
+
+describe('trains to city path', {:type => :feature}) do
+  it('joins cities and trains in the stops table') do
+    test_train = Train.new(:name => 'Red', :id => nil)
+    test_train.save()
+    test_city = City.new(:id => nil, :name => 'Eugene')
+    test_city.save()
+    visit("/cities/#{test_city.id()}/edit")
+    check('train_ids[]')
+    click_button('Add train')
+    expect(page).to have_content("Red")
+  end
+end
